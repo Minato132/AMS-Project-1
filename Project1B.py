@@ -1,11 +1,17 @@
 import numpy as np
 import pandas as pd
 import csv
+import matplotlib.pyplot as plt
 
 with open('Part B Data/927567_PartB.csv') as file:
     data = pd.read_csv(file)
 
 data.sort_values(by = 'x', ascending= True, inplace = True, ignore_index = True)
+
+data['y'] = 1/(data['y'])
+
+
+
 max = max(data['x']) // 1
 min = min(data['x']) // 1
 
@@ -35,7 +41,7 @@ for i in range(1,len(x)):
 datastart.rename(columns = {0:'x', 1:'y'}, inplace = True)
 
 print(datastart)
-datastart.to_csv('binned_data')
+datastart.to_csv('binned_data2')
 
     
 
