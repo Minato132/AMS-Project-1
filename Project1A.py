@@ -30,7 +30,7 @@ DV = data['DV'].tolist()
 #Adding the constant term
 IV = sm.add_constant(IV)
 
-#Fitting and linear regression model
+#Fitting a linear regression model
 result = sm.OLS(DV, IV).fit()
 
 print(result.summary())

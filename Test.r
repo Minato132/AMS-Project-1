@@ -1,18 +1,21 @@
 library(ggplot2)
-library(dplyr)
-library(rlist)
+library(knitr)
 
-data <- read.csv("Part B Data/binned_data")
+data <- read.csv("Part B Data/binned_data2")
 data1 <- data[,c('x', 'y')]
 
 
 # fit full model
-full <- lm(y ~ poly(x, 2), data = data1)
+model1 <- lm(y ~ poly(x, 2), data = data1)
 
 # fit reduced model
-reduced <- lm(y ~ x, data = data1)
+model2 <- lm(y ~ x, data = data1)
 
-print(anova(full, reduced))
+print(anova(model1, model2))
 
 plot <- ggplot(data1, aes(x=x, y=y)) + geom_point() + stat_smooth(method = 'lm', formula = y ~ x, size = 1) + xlab('x') + ylab('y') 
+
+M <- lm(y~x , data = data1)
+print(summary(M))
+print(confint(M, level = .995))
 print(plot)
